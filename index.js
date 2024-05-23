@@ -15,7 +15,7 @@ const sup = document.getElementById('sup')
 
 
 
-async function getData(KYE, cityName){
+async function getData(KEY, cityName){
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=${cityName}&aqi=yes`);
     return await response.json();
 }
