@@ -13,12 +13,20 @@ const localTime= document.getElementById('loc-time');
 const temp = document.getElementById('temp')
 const sup = document.getElementById('sup')
 
-
-
-async function getData(KEY, cityName){
-    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=${cityName}&aqi=yes`);
-    return await response.json();
-}
+async function getData(KEY, city) {
+    try {
+      const response = await fetch(
+        `https://api.weatherapi.com/v1/current.json?key=dd42ad9fb4914f379eb75519242305&q=${city}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("There has been a problem with your fetch operation:", error);
+      return null;
+    }
+  }
 
 searchBtn.addEventListener('click', async ()=>{
     const input = cityInput.value;
